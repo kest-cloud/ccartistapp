@@ -1,6 +1,7 @@
 import 'package:ccartistapp/artistapi/postapi.dart';
 import 'package:ccartistapp/models/postmodel.dart';
 import 'package:ccartistapp/provider/postprovider.dart';
+import 'package:ccartistapp/screens/artistdetail.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -65,7 +66,13 @@ class ArtistListPageState extends State<ArtistListPage> {
                         ],
                       ),
                     ),
-                    onTap: () {});
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ArtistDetails(id: post.id)));
+                    });
               },
             );
           }

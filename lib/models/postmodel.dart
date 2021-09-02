@@ -1,7 +1,8 @@
 //import 'dart:convert';
 
 class Post {
-  int? id;
+  int id;
+
   String name;
   String username;
   String email;
