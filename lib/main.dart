@@ -1,4 +1,7 @@
+import 'package:ccartistapp/app.dart';
+import 'package:ccartistapp/provider/albumprovider.dart';
 import 'package:ccartistapp/provider/postprovider.dart';
+import 'package:ccartistapp/screens/artistalbum.dart';
 import 'package:ccartistapp/screens/artistlists.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +11,10 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (context) => PostProvider())],
+    providers: [
+      ChangeNotifierProvider(create: (context) => PostProvider()),
+      ChangeNotifierProvider(create: (context) => AlbumProvider())
+    ],
     child: ArtistApp(),
   ));
 }
@@ -23,13 +29,13 @@ class ArtistApp extends StatelessWidget {
       navigatorKey: navigator,
       title: "Artist List",
       theme: ThemeData(
-        primaryColor: Colors.orange,
+        primaryColor: Colors.brown[400],
       ),
       home: Scaffold(
         appBar: AppBar(
           title: Text("CC Artist List"),
         ),
-        body: ArtistListPage(),
+        body: Homepage(),
       ),
     );
   }
