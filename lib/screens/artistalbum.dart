@@ -1,62 +1,55 @@
 import 'package:ccartistapp/artistapi/postapi.dart';
+import 'package:ccartistapp/models/artistalbum.dart';
 import 'package:ccartistapp/models/postmodel.dart';
+import 'package:ccartistapp/provider/albumprovider.dart';
 import 'package:ccartistapp/provider/postprovider.dart';
 import 'package:ccartistapp/screens/artistalbum.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-class ArtistListPage extends StatefulWidget {
-  const ArtistListPage({Key? key}) : super(key: key);
+class AlbumPage extends StatefulWidget {
+  const AlbumPage({Key? key}) : super(key: key);
 
   @override
-  ArtistListPageState createState() => ArtistListPageState();
+  AlbumPageState createState() => AlbumPageState();
 }
 
-class ArtistListPageState extends State<ArtistListPage> {
+class AlbumPageState extends State<AlbumPage> {
   @override
   Widget build(BuildContext context) {
-    var postApi = new PostApi();
+    var albumApi = new AlbumPost();
     return Scaffold(
         body: Column(children: [
       Expanded(
           child: Padding(
         padding: EdgeInsets.all(20.0),
-        child: Consumer<PostProvider>(builder: (context, postProvider, child) {
-          if (postProvider.loading) {
+        child:
+            Consumer<AlbumProvider>(builder: (context, albumProvider, child) {
+          if (albumProvider.loading) {
             return CircularProgressIndicator(
               color: Colors.blue,
             );
           } else {
             return ListView.builder(
               //padding: const EdgeInsets.all(8),
-              itemCount: postProvider.posts.length,
+              itemCount: albumProvider.artistalbum.length,
               itemBuilder: (context, index) {
-                Post post = postProvider.posts[index];
+                ArtistAlbum artistalbum = albumProvider.artistalbum[index];
                 return GestureDetector(
                     child: Container(
                       //color: Colors.orangeAccent,
                       child: Column(
                         children: [
-                          SizedBox(height: 10.0),
-                          Text(post.id.toString()),
                           Text(
-                            post.name,
+                            artistalbum.id.toString(),
                             style: (TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold)),
                           ),
                           SizedBox(height: 10.0),
-                          Text(post.username),
+                          Text(artistalbum.userId.toString()),
                           SizedBox(height: 25.0),
-                          Text(post.email),
-                          SizedBox(height: 10),
-                          Text(post.phone),
-                          SizedBox(height: 10),
-                          Text(post.website),
-                          SizedBox(height: 10),
-                          Text(post.address.toString()),
-                          SizedBox(height: 10),
-                          Text(post.company.toString()),
+                          Text(artistalbum.title),
                           SizedBox(height: 10),
                           const Divider(
                             color: Colors.blueGrey,

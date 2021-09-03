@@ -1,5 +1,4 @@
 import 'package:ccartistapp/artistapi/postapi.dart';
-import 'package:ccartistapp/models/artistdetailsmodel.dart';
 import 'package:ccartistapp/models/postmodel.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +7,6 @@ class PostProvider extends ChangeNotifier {
   bool loading = true;
 
   List<Post> posts = [];
-  List<Albuminfo> album = [];
 
   void getAllPost() async {
     PostApi postApi = PostApi();
